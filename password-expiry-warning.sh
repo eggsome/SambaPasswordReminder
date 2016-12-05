@@ -107,7 +107,7 @@ for smbcurrentuser in "${smbuserlist[@]}"
 
     if ([ "$howoldpw" -gt "$daysofvalidity" ] && [ "$howoldpw" -lt "$warningperiodend" ])
        then
-          emailvaliduser $smbcurrentuser "Password expired" "Your password has expired. If you are having problems accessing your PI account please contact IT on 03 9945 7549."
+          emailvaliduser $smbcurrentuser "Password expired" "Your password has expired. If you are having problems accessing your account please contact IT on XX XXXX XXXX."
     fi 
 
 
