@@ -2,7 +2,6 @@
 
 # This script checks for user passwords that are about to expire and
 # then emails the users to warn them.
-# see kvv for more details.
 
 # define and initalize loop couter, days of validity and the date
 loopcounter=0
@@ -18,11 +17,6 @@ warningperiodend=$(expr $daysofvalidity + $howmanydayswarning)
 /bin/rm /tmp/smbusernamelist.txt
 /bin/rm /tmp/pwexpfixeddate.txt
 /bin/rm /tmp/validgoogleusers.txt
-
-# exit immediately if anything goes awry, since otherwize we might
-# end up emailing people junk
-# --- kvv 23jun2015 - removed this because otherwize we can't easily check for disabled AD users
-#set -e
 
 # define function that will only email valid users
 # it takes three inputs - username/email ($1), subject ($2), body text ($3)
@@ -41,7 +35,7 @@ function emailvaliduser {
               do
               if [ "$currentgoogleuser" = "$1" ]
                 then
-                  echo "$3" | /usr/bin/mail -s " $2 " -a "From: it-support@planetinnovation.com.au" $1@planetinnovation.com.au
+                  echo "$3" | /usr/bin/mail -s " $2 " -a "From: it_support@YourCompanyName.com" $1@planetinnovation.com.au
                 else
                   # The user does not have a valid google account, so don't try to send them anything
                   : 
@@ -112,26 +106,8 @@ for smbcurrentuser in "${smbuserlist[@]}"
 
 
 
-
-# debug stuff
-#echo loopcounter is at: $loopcounter
-#echo $smbcurrentuser
-#echo howoldpw: $howoldpw
-#    echo smbcurrentuser is $smbcurrentuser
-#    echo ${smbdatelist[$loopcounter]}
-
-
     let loopcounter=loopcounter+1
   done
-
-
-#echo daysofvalid: $daysofvalidity
-#echo how much warning: $howmanydayswarning
-#echo start day for warning: $warningperiodstart
-#echo end of warnings: $warningperiodend
-#echo final loopcounter is at: $loopcounter
-
-
 
 
 
