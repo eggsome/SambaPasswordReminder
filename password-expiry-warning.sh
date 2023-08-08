@@ -80,11 +80,11 @@ for smbcurrentuser in "${smbuserlist[@]}"
     # depending on how old the password is; take action
     if ([ "$howoldpw" -gt "$warningperiodstart" ] && [ "$howoldpw" -lt "$daysofvalidity" ])
        then
-          emailvaliduser $smbcurrentuser "Password expiry warning" "Your <YOUR DOMAIN> Active Directory password will expire in $((daysofvalidity - howoldpw)) days. To avoid any problems with your login, please change it before expiry. To change your password simply press CTRL+ALT+DEL and follow the prompts. For VPN users; navigate to https://passwd.int.partium.io set it there."
+          emailvaliduser $smbcurrentuser "Password expiry warning" "Your <YOUR DOMAIN> Active Directory password will expire in $((daysofvalidity - howoldpw)) days. To avoid any problems with your login, please change it before expiry. To change your password simply press CTRL+ALT+DEL and follow the prompts."
     fi
     if [ "$howoldpw" -eq "$daysofvalidity" ]
        then
-          emailvaliduser $smbcurrentuser "Password expiry warning" "Your <YOUR DOMAIN> Active Directory password will expire today. To avoid any problems with your login, please change it before expiry. To change your password simply press CTRL+ALT+DEL and follow the prompts. For VPN users; navigate to https://passwd.int.partium.io set it there."
+          emailvaliduser $smbcurrentuser "Password expiry warning" "Your <YOUR DOMAIN> Active Directory password will expire today. To avoid any problems with your login, please change it before expiry. To change your password simply press CTRL+ALT+DEL and follow the prompts."
     fi
     if ([ "$howoldpw" -gt "$daysofvalidity" ] && [ "$howoldpw" -lt "$warningperiodend" ])
        then
