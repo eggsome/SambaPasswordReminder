@@ -18,7 +18,7 @@ warningperiodend=$(expr $daysofvalidity + $howmanydayswarning)
 # it takes three inputs - username/email ($1), subject ($2), body text ($3)
 function emailvaliduser {
   # gather list of valid email address
-  /usr/bin/pdbedit -L -v | egrep "Full Name:"|sed 's/Full Name:            //'|sed '/^$/d'|sed -e 's/\(.*\)/\L\1/'|sed -e 's/ /./g'|sed -e 's/$/\@partium.io/' > /tmp/validusers.txt
+  /usr/bin/pdbedit -L -v | egrep "Full Name:"|sed 's/Full Name:            //'|sed '/^$/d'|sed -e 's/\(.*\)/\L\1/'|sed -e 's/ /./g'|sed -e 's/$/\@<YOUR DOMAIN>/' > /tmp/validusers.txt
   # create an array of users that exist in the db
     validusers=( `/bin/cat "/tmp/validusers.txt" `)
   # first check if the account has been disabled in AD
